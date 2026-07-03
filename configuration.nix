@@ -160,10 +160,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    anki antimicrox brave discord  qt6.qtbase
-     qt6.qttools
-     qt5.qtbase
-     qt5.qttools qt6Packages.qt6ct gh
+    anki antimicrox brave discord gh
     cargo curl distrobox engrampa github-copilot-cli spice spice-gtk spice-protocol
     fastfetch firefox gcc git gdb jq jupyter keepassxc libreoffice-fresh
     localsend lswt mullvad-browser nano nodejs openconnect openssh
