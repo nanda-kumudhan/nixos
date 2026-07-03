@@ -167,7 +167,10 @@
     openvpn papirus-icon-theme prismlauncher python3 qemu
     remmina rustc rpi-imager sbctl spotify transmission_4-gtk tor torsocks
     tor-browser tree vim vscodium wget wireguard-tools yt-dlp zed-editor
+    gruvbox-dark-gtk proton-vpn-cli
   ];
+
+  programs.nix-ld.enable = true;
 
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
