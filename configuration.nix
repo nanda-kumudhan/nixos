@@ -236,9 +236,10 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 30d";
+    options = "--delete-older-than 14d";
   };
   nix.settings.auto-optimise-store = true;
+  nix.optimise.automatic = true;
 
   services.fstrim.enable = true;
 
@@ -246,5 +247,14 @@
     enable = true;
     memoryPercent = 50;
   };
+
+  system.autoUpgrade = {
+    enable = true;
+    dates = "weekly";
+  };
+
+  boot.loader.systemd-boot.extraInstallCommands = ''
+    ${pkgs.sbctl}/bin/sbctl sign-all || true
+  '';
 
 }
