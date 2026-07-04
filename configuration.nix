@@ -185,7 +185,6 @@
   users.users."nanda-kumudhan" = {
     isNormalUser = true;
     description = "Nanda Kumudhan";
-    hashedPassword = "$6$jJ9v.1SlIoEpJzKQ$t1./4aONTxloD3.XLrGG8J4d7dh8eQAtG5Y9Q03G2QOg/wVGbDuRZGQwNUzEUWFsdRFW9mZhws3VU9BQBdT..0";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "dialout" "adbusers"];
   };
 
@@ -224,7 +223,7 @@
 
   services.tlp.enable = true;
 
-  networking.hostName = "nanda-desktop";
+  networking.hostName = "nanda-laptop";
 
   nix.gc = {
     automatic = true;
