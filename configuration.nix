@@ -161,7 +161,7 @@
     localsend lswt nano nodejs openconnect openssh
     openvpn papirus-icon-theme prismlauncher python3 qemu
     remmina rustc rpi-imager sbctl spotify transmission_4-gtk tor torsocks
-    tor-browser tree vim wget wireguard-tools yt-dlp zed-editor
+    tor-browser tree wget wireguard-tools yt-dlp zed-editor
     gruvbox-dark-gtk python3Packages.ipython python3Packages.pip
     python3Packages.virtualenv maven gradle jdk gnome-disk-utility
   ];
