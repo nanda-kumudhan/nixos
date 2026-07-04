@@ -158,7 +158,7 @@
     anki antimicrox brave discord gh firefox
     cargo curl distrobox engrampa github-copilot-cli spice spice-gtk spice-protocol
     fastfetch gcc git gdb jq jupyter keepassxc libreoffice-fresh
-    localsend lswt nano nodejs openconnect openssh
+    localsend lswt nano nodejs openconnect texmaker
     openvpn papirus-icon-theme prismlauncher python3 qemu
     remmina rustc rpi-imager sbctl spotify transmission_4-gtk tor torsocks
     tor-browser tree wget wireguard-tools yt-dlp zed-editor
