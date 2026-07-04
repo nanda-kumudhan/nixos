@@ -162,8 +162,8 @@
   environment.systemPackages = with pkgs; [
     anki antimicrox brave discord gh
     cargo curl distrobox engrampa github-copilot-cli spice spice-gtk spice-protocol
-    fastfetch firefox gcc git gdb jq jupyter keepassxc libreoffice-fresh
-    localsend lswt mullvad-browser nano nodejs openconnect openssh
+    fastfetch gcc git gdb jq jupyter keepassxc libreoffice-fresh
+    localsend lswt nano nodejs openconnect openssh
     openvpn papirus-icon-theme prismlauncher python3 qemu
     remmina rustc rpi-imager sbctl spotify transmission_4-gtk tor torsocks
     tor-browser tree vim vscodium wget wireguard-tools yt-dlp zed-editor
