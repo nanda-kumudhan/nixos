@@ -167,7 +167,8 @@
     openvpn papirus-icon-theme prismlauncher python3 qemu
     remmina rustc rpi-imager sbctl spotify transmission_4-gtk tor torsocks
     tor-browser tree vim vscodium wget wireguard-tools yt-dlp zed-editor
-    gruvbox-dark-gtk proton-vpn-cli
+    gruvbox-dark-gtk proton-vpn-cli python3Packages.ipython python3Packages.pip
+    python3Packages.virtualenv maven gradle jdk gnome-disk-utility
   ];
 
   programs.nix-ld.enable = true;
