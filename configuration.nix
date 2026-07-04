@@ -12,7 +12,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   ############################################################
   # Networking
@@ -190,14 +190,6 @@
 
   programs.starship.enable = true;
   system.stateVersion = "26.05";
-
-  ############################################################
-  # Specialisations (Dual Kernel Boot)
-  ############################################################
-
-  specialisation."LTS".configuration = {
-    boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
-  };
 
   ############################################################
   # Display Manager (Console/TUI Login into Sway)
