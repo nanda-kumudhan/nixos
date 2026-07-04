@@ -12,7 +12,6 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages;
 
   ############################################################
   # Networking
@@ -26,8 +25,8 @@
   ];
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 53317 ]; # LocalSend
-  networking.firewall.allowedUDPPorts = [ 53317 ]; # LocalSend
+  networking.firewall.allowedTCPPorts = [ 53317 ];
+  networking.firewall.allowedUDPPorts = [ 53317 ];
 
   ############################################################
   # Localization
@@ -112,10 +111,6 @@
   security.apparmor.packages = [ pkgs.apparmor-profiles ];
   security.apparmor.killUnconfinedConfinables = true;
 
-  programs.ssh.startAgent = true;
-  systemd.user.services.ssh-agent.enable = false;
-  systemd.user.sockets.ssh-agent.enable = false;
-
   ############################################################
   # Services
   ############################################################
@@ -160,14 +155,14 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    anki antimicrox brave discord gh
+    anki antimicrox brave discord gh firefox
     cargo curl distrobox engrampa github-copilot-cli spice spice-gtk spice-protocol
     fastfetch gcc git gdb jq jupyter keepassxc libreoffice-fresh
     localsend lswt nano nodejs openconnect openssh
     openvpn papirus-icon-theme prismlauncher python3 qemu
     remmina rustc rpi-imager sbctl spotify transmission_4-gtk tor torsocks
-    tor-browser tree vim vscodium wget wireguard-tools yt-dlp zed-editor
-    gruvbox-dark-gtk proton-vpn-cli python3Packages.ipython python3Packages.pip
+    tor-browser tree vim wget wireguard-tools yt-dlp zed-editor
+    gruvbox-dark-gtk python3Packages.ipython python3Packages.pip
     python3Packages.virtualenv maven gradle jdk gnome-disk-utility
   ];
 
@@ -223,7 +218,7 @@
 
   services.tlp.enable = true;
 
-  networking.hostName = "nanda-laptop";
+  networking.hostName = "nanda-desktop";
 
   nix.gc = {
     automatic = true;
