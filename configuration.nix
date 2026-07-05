@@ -64,7 +64,7 @@
       networkmanagerapplet nwg-look brightnessctl
       pavucontrol polkit_gnome rofi slurp swaybg swayidle
       swaylock thunar waybar wdisplays wf-recorder
-      wl-clipboard zathura
+      wl-clipboard zathura playerctl
     ];
   };
 
