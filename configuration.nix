@@ -64,9 +64,11 @@
       networkmanagerapplet nwg-look brightnessctl
       pavucontrol polkit_gnome rofi slurp swaybg swayidle
       swaylock thunar waybar wdisplays wf-recorder
-      wl-clipboard zathura
+      wl-clipboard zathura playerctl libappindicator-gtk3
     ];
   };
+
+  services.upower.enable = true;
 
   ############################################################
   # Desktop Portals (screen sharing, file pickers)
@@ -153,6 +155,13 @@
   ############################################################
 
   nixpkgs.config.allowUnfree = true;
+
+  environment.sessionVariables = {
+    NIXOS_OGL = "1";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_CURRENT_DESKTOP = "sway";
+    XDG_SESSION_DESKTOP = "sway";
+  };
 
   environment.systemPackages = with pkgs; [
     anki antimicrox brave discord gh firefox
