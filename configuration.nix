@@ -10,8 +10,15 @@
   # Boot
   ############################################################
 
-  boot.loader.systemd-boot.enable = true;
+  system.stateVersion = "26.05"; 
+boot.loader.systemd-boot.enable = true;
+
+boot.loader.systemd-boot.extraInstallCommands = ''
+  ${pkgs.sbctl}/bin/sbctl sign-all
+'';
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   ############################################################
   # Networking
@@ -64,7 +71,7 @@
       networkmanagerapplet nwg-look brightnessctl
       pavucontrol polkit_gnome rofi slurp swaybg swayidle
       swaylock thunar waybar wdisplays wf-recorder
-      wl-clipboard zathura playerctl
+      wl-clipboard zathura playerctl blueman networkmanagerapplet
     ];
   };
 
@@ -104,7 +111,11 @@
   ############################################################
 
   security.polkit.enable = true;
-  security.tpm2.enable = true;
+  security.tpm2 = {
+    enable = true;
+    pkcs11.enable = true;
+    tctiEnvironment.enable = true;
+  };
   security.rtkit.enable = true;
 
   security.apparmor.enable = true;
@@ -121,6 +132,7 @@
     pulse.enable = true;
     jack.enable = true;
   };
+  services.blueman.enable = true;
 
   services.udisks2.enable = true;
   services.gvfs.enable = true;
@@ -158,15 +170,16 @@
     anki antimicrox brave discord gh firefox
     cargo curl distrobox engrampa github-copilot-cli spice spice-gtk spice-protocol
     fastfetch gcc git gdb jq jupyter keepassxc libreoffice-fresh
-    localsend lswt nano nodejs openconnect texmaker
-    openvpn papirus-icon-theme prismlauncher python3 qemu
-    remmina rustc rpi-imager sbctl spotify transmission_4-gtk tor torsocks
+    localsend lswt nano nodejs openconnect texmaker seahorse
+    openvpn papirus-icon-theme prismlauncher python3 qemu sbctl
+    remmina rustc rpi-imager spotify transmission_4-gtk tor torsocks
     tor-browser tree wget wireguard-tools yt-dlp zed-editor
     gruvbox-dark-gtk python3Packages.ipython python3Packages.pip
     python3Packages.virtualenv maven gradle jdk gnome-disk-utility
   ];
 
   programs.nix-ld.enable = true;
+services.dbus.enable = true;
 
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
@@ -184,8 +197,7 @@
   };
 
   programs.starship.enable = true;
-  system.stateVersion = "26.05";
-
+  
   ############################################################
   # Display Manager (Console/TUI Login into Sway)
   ############################################################
@@ -229,19 +241,17 @@
   nix.optimise.automatic = true;
 
   services.fstrim.enable = true;
+security.pam.services.greetd.enableGnomeKeyring = true;
+services.gnome.gnome-keyring.enable = true;
 
   zramSwap = {
     enable = true;
     memoryPercent = 50;
   };
 
-  system.autoUpgrade = {
-    enable = true;
-    dates = "weekly";
-  };
 
-  boot.loader.systemd-boot.extraInstallCommands = ''
-    ${pkgs.sbctl}/bin/sbctl sign-all || true
-  '';
+boot.loader.systemd-boot.extraInstallCommands = ''
+  ${pkgs.sbctl}/bin/sbctl sign-all
+'';
 
 }
