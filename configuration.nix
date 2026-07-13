@@ -250,8 +250,4 @@ services.gnome.gnome-keyring.enable = true;
   };
 
 
-boot.loader.systemd-boot.extraInstallCommands = ''
-  ${pkgs.sbctl}/bin/sbctl sign-all
-'';
-
 }
