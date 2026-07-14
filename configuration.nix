@@ -15,6 +15,8 @@
   boot.loader.systemd-boot.enable = true; 
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  
   ############################################################
   # Networking
   ############################################################
@@ -64,9 +66,9 @@
     extraPackages = with pkgs; [
       autotiling foot grim htop imv dunst mpv kanshi
       networkmanagerapplet nwg-look brightnessctl
-      pavucontrol polkit_gnome rofi slurp swaybg swayidle
-      swaylock thunar waybar wdisplays wf-recorder efibootmgr
-      wl-clipboard zathura playerctl blueman networkmanagerapplet
+      pavucontrol polkit_gnome slurp swaybg swayidle
+      swaylock thunar waybar wdisplays wf-recorder
+      wl-clipboard zathura playerctl blueman rofi
     ];
   };
 
@@ -126,12 +128,15 @@
   services.printing.enable = true;
   services.avahi.enable = true;
   services.avahi.nssmdns4 = true;
+  services.fprintd.enable = true;
 
   services.logind.settings.Login = {
     HandlePowerKey = "suspend";
     IdleAction = "suspend";
-    IdleActionSec = "10min";
+    IdleActionSec = "15min";
   };
+
+  services.flatpak.enable = true;
 
   ############################################################
   # Virtualisation
@@ -152,7 +157,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    anki antimicrox brave discord gh firefox
+    anki antimicrox brave discord gh firefox efibootmgr fprintd
     cargo curl distrobox engrampa github-copilot-cli spice spice-gtk spice-protocol
     fastfetch gcc git gdb jq jupyter keepassxc libreoffice-fresh
     localsend lswt nano nodejs openconnect texmaker seahorse
@@ -161,7 +166,7 @@
     tor-browser tree wget wireguard-tools yt-dlp zed-editor
     gruvbox-dark-gtk python3Packages.ipython python3Packages.pip
     python3Packages.virtualenv maven gradle jdk gnome-disk-utility
-  ];
+ ];
 
   programs.nix-ld.enable = true;
 services.dbus.enable = true;
@@ -178,7 +183,7 @@ services.dbus.enable = true;
   users.users."nanda-kumudhan" = {
     isNormalUser = true;
     description = "Nanda Kumudhan";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "dialout" "adbusers"];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "kvm" "dialout" "adbusers" "input"];
   };
 
   programs.starship.enable = true;
@@ -207,11 +212,8 @@ services.dbus.enable = true;
     TTYReset = true;
     TTYVHangup = true;
     TTYVTDisallocate = true;
-  };
+  }; 
 
-  security.pam.services = {
-	login.enableGnomeKeyring = true;
-  };
 
   ############################################################
   # Laptop Power Management
