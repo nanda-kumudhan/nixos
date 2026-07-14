@@ -157,7 +157,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    anki antimicrox brave discord gh firefox efibootmgr fprintd
+    anki antimicrox brave gh firefox efibootmgr fprintd
     cargo curl distrobox engrampa github-copilot-cli spice spice-gtk spice-protocol
     fastfetch gcc git gdb jq jupyter keepassxc libreoffice-fresh
     localsend lswt nano nodejs openconnect texmaker seahorse
