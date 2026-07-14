@@ -4,21 +4,16 @@
 
   imports = [
       ./hardware-configuration.nix
-    ];
+  ];
 
   ############################################################
   # Boot
   ############################################################
 
   system.stateVersion = "26.05"; 
-boot.loader.systemd-boot.enable = true;
 
-boot.loader.systemd-boot.extraInstallCommands = ''
-  ${pkgs.sbctl}/bin/sbctl sign-all
-'';
+  boot.loader.systemd-boot.enable = true; 
   boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   ############################################################
   # Networking
@@ -67,10 +62,10 @@ boot.loader.systemd-boot.extraInstallCommands = ''
     enable = true;
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
-      autotiling foot grim htop imv mako mpv
+      autotiling foot grim htop imv dunst mpv kanshi
       networkmanagerapplet nwg-look brightnessctl
       pavucontrol polkit_gnome rofi slurp swaybg swayidle
-      swaylock thunar waybar wdisplays wf-recorder
+      swaylock thunar waybar wdisplays wf-recorder efibootmgr
       wl-clipboard zathura playerctl blueman networkmanagerapplet
     ];
   };
@@ -84,17 +79,7 @@ boot.loader.systemd-boot.extraInstallCommands = ''
     wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
     ];
-    config.sway = {
-      default = [ "gtk" ];
-      "org.freedesktop.portal.ScreenCast" = [ "wlr" "gtk" ];
-    };
-  };
-
-  xdg.portal.wlr.settings.screencast = {
-    chooser_type = "simple";
-    chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
   };
 
   ############################################################
@@ -224,13 +209,17 @@ services.dbus.enable = true;
     TTYVTDisallocate = true;
   };
 
+  security.pam.services = {
+	login.enableGnomeKeyring = true;
+  };
+
   ############################################################
   # Laptop Power Management
   ############################################################
 
   services.tlp.enable = true;
 
-  networking.hostName = "nanda-desktop";
+  networking.hostName = "nanda-laptop";
 
   nix.gc = {
     automatic = true;
@@ -248,6 +237,5 @@ services.gnome.gnome-keyring.enable = true;
     enable = true;
     memoryPercent = 50;
   };
-
-
+  
 }
