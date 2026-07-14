@@ -219,7 +219,22 @@ services.dbus.enable = true;
   # Laptop Power Management
   ############################################################
 
-  services.tlp.enable = true;
+  services.tlp = {
+  enable = true;
+  settings = {
+    # CPU governors
+    CPU_SCALING_GOVERNOR_ON_AC = "performance";
+    CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    
+    CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+    CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+
+    # Battery charge thresholds (set according to your laptop's battery index)
+    START_CHARGE_THRESH_BAT0 = 75; # Starts charging when below 40%
+    STOP_CHARGE_THRESH_BAT0 = 80;  # Stops charging at 80%
+  };
+};
+
 
   networking.hostName = "nanda-laptop";
 
