@@ -232,6 +232,8 @@ services.dbus.enable = true;
     STOP_CHARGE_THRESH_BAT0 = 80;  # Stops charging at 80%
   };
 };
+  services.power-profiles-daemon.enable = false;
+
 
   networking.hostName = "nanda-laptop";
 
