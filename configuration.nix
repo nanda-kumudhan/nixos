@@ -16,6 +16,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.kernelModules = [ "msr" "uinput" ];      
   
   ############################################################
   # Networking
@@ -92,6 +94,7 @@
   hardware.sane.enable = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.input.General.ClassicBondedOnly = false;   
 
   ############################################################
   # Security
@@ -123,6 +126,7 @@
 
   services.udisks2.enable = true;
   services.gvfs.enable = true;
+
   services.tumbler.enable = true;
   services.tailscale.enable = true;
   services.printing.enable = true;
@@ -157,7 +161,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    anki antimicrox brave gh firefox efibootmgr fprintd
+    anki brave gh firefox efibootmgr fprintd bluez
     cargo curl distrobox engrampa github-copilot-cli spice spice-gtk spice-protocol
     fastfetch gcc git gdb jq jupyter keepassxc libreoffice-fresh
     localsend lswt nano nodejs openconnect texmaker seahorse
@@ -222,19 +226,12 @@ services.dbus.enable = true;
   services.tlp = {
   enable = true;
   settings = {
-    # CPU governors
-    CPU_SCALING_GOVERNOR_ON_AC = "performance";
-    CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-    
-    CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-    CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-
+  
     # Battery charge thresholds (set according to your laptop's battery index)
     START_CHARGE_THRESH_BAT0 = 75; # Starts charging when below 40%
     STOP_CHARGE_THRESH_BAT0 = 80;  # Stops charging at 80%
   };
 };
-
 
   networking.hostName = "nanda-laptop";
 
