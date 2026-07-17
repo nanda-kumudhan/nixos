@@ -140,8 +140,6 @@
     IdleActionSec = "15min";
   };
 
-  services.flatpak.enable = true;
-
   ############################################################
   # Virtualisation
   ############################################################
@@ -161,7 +159,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    anki brave gh firefox efibootmgr fprintd bluez
+    anki brave gh firefox efibootmgr fprintd bluez discord stremio-linux-shell
     cargo curl distrobox engrampa github-copilot-cli spice spice-gtk spice-protocol
     fastfetch gcc git gdb jq jupyter keepassxc libreoffice-fresh
     localsend lswt nano nodejs openconnect texmaker seahorse
